@@ -5,78 +5,78 @@
 //////////////////////////////////////////
 
 `timescale 1ns/1fs
-module pipe_r(
+module pipe_r #(parameter W = 9)(
     
     input       wire            clk,	
 	input       wire            arstb,	
 	input       wire            rstb,	
     
-    input      signed      [8:0]      d_r_0,  
-    input      signed      [8:0]      d_r_1,  
-    input      signed      [8:0]      d_r_2,  
-    input      signed      [8:0]      d_r_3,  
-    input      signed      [8:0]      d_r_4,  
-    input      signed      [8:0]      d_r_5,  
-    input      signed      [8:0]      d_r_6,  
-    input      signed      [8:0]      d_r_7,  
-    input      signed      [8:0]      d_r_8,  
-    input      signed      [8:0]      d_r_9,  
-    input      signed      [8:0]      d_r_10,  
-    input      signed      [8:0]      d_r_11,  
-    input      signed      [8:0]      d_r_12,  
-    input      signed      [8:0]      d_r_13,  
-    input      signed      [8:0]      d_r_14,  
-    input      signed      [8:0]      d_r_15,  
-    input      signed      [8:0]      d_r_16,  
-    input      signed      [8:0]      d_r_17,  
-    input      signed      [8:0]      d_r_18,  
-    input      signed      [8:0]      d_r_19,  
-    input      signed      [8:0]      d_r_20,  
-    input      signed      [8:0]      d_r_21,  
-    input      signed      [8:0]      d_r_22,  
-    input      signed      [8:0]      d_r_23,  
-    input      signed      [8:0]      d_r_24,  
-    input      signed      [8:0]      d_r_25,  
-    input      signed      [8:0]      d_r_26,  
-    input      signed      [8:0]      d_r_27,  
-    input      signed      [8:0]      d_r_28,  
-    input      signed      [8:0]      d_r_29,  
-    input      signed      [8:0]      d_r_30,  
-    input      signed      [8:0]      d_r_31,  
+    input      signed      [W-1:0]      d_r_0,  
+    input      signed      [W-1:0]      d_r_1,  
+    input      signed      [W-1:0]      d_r_2,  
+    input      signed      [W-1:0]      d_r_3,  
+    input      signed      [W-1:0]      d_r_4,  
+    input      signed      [W-1:0]      d_r_5,  
+    input      signed      [W-1:0]      d_r_6,  
+    input      signed      [W-1:0]      d_r_7,  
+    input      signed      [W-1:0]      d_r_8,  
+    input      signed      [W-1:0]      d_r_9,  
+    input      signed      [W-1:0]      d_r_10,  
+    input      signed      [W-1:0]      d_r_11,  
+    input      signed      [W-1:0]      d_r_12,  
+    input      signed      [W-1:0]      d_r_13,  
+    input      signed      [W-1:0]      d_r_14,  
+    input      signed      [W-1:0]      d_r_15,  
+    input      signed      [W-1:0]      d_r_16,  
+    input      signed      [W-1:0]      d_r_17,  
+    input      signed      [W-1:0]      d_r_18,  
+    input      signed      [W-1:0]      d_r_19,  
+    input      signed      [W-1:0]      d_r_20,  
+    input      signed      [W-1:0]      d_r_21,  
+    input      signed      [W-1:0]      d_r_22,  
+    input      signed      [W-1:0]      d_r_23,  
+    input      signed      [W-1:0]      d_r_24,  
+    input      signed      [W-1:0]      d_r_25,  
+    input      signed      [W-1:0]      d_r_26,  
+    input      signed      [W-1:0]      d_r_27,  
+    input      signed      [W-1:0]      d_r_28,  
+    input      signed      [W-1:0]      d_r_29,  
+    input      signed      [W-1:0]      d_r_30,  
+    input      signed      [W-1:0]      d_r_31,  
     
 	
-    output      reg signed      [8:0]      q_r_0,  
-    output      reg signed      [8:0]      q_r_1,  
-    output      reg signed      [8:0]      q_r_2,  
-    output      reg signed      [8:0]      q_r_3,  
-    output      reg signed      [8:0]      q_r_4,  
-    output      reg signed      [8:0]      q_r_5,  
-    output      reg signed      [8:0]      q_r_6,  
-    output      reg signed      [8:0]      q_r_7,  
-    output      reg signed      [8:0]      q_r_8,  
-    output      reg signed      [8:0]      q_r_9,  
-    output      reg signed      [8:0]      q_r_10,  
-    output      reg signed      [8:0]      q_r_11,  
-    output      reg signed      [8:0]      q_r_12,  
-    output      reg signed      [8:0]      q_r_13,  
-    output      reg signed      [8:0]      q_r_14,  
-    output      reg signed      [8:0]      q_r_15,  
-    output      reg signed      [8:0]      q_r_16,  
-    output      reg signed      [8:0]      q_r_17,  
-    output      reg signed      [8:0]      q_r_18,  
-    output      reg signed      [8:0]      q_r_19,  
-    output      reg signed      [8:0]      q_r_20,  
-    output      reg signed      [8:0]      q_r_21,  
-    output      reg signed      [8:0]      q_r_22,  
-    output      reg signed      [8:0]      q_r_23,  
-    output      reg signed      [8:0]      q_r_24,  
-    output      reg signed      [8:0]      q_r_25,  
-    output      reg signed      [8:0]      q_r_26,  
-    output      reg signed      [8:0]      q_r_27,  
-    output      reg signed      [8:0]      q_r_28,  
-    output      reg signed      [8:0]      q_r_29,  
-    output      reg signed      [8:0]      q_r_30,  
-    output      reg signed      [8:0]      q_r_31  
+    output      reg signed      [W-1:0]      q_r_0,  
+    output      reg signed      [W-1:0]      q_r_1,  
+    output      reg signed      [W-1:0]      q_r_2,  
+    output      reg signed      [W-1:0]      q_r_3,  
+    output      reg signed      [W-1:0]      q_r_4,  
+    output      reg signed      [W-1:0]      q_r_5,  
+    output      reg signed      [W-1:0]      q_r_6,  
+    output      reg signed      [W-1:0]      q_r_7,  
+    output      reg signed      [W-1:0]      q_r_8,  
+    output      reg signed      [W-1:0]      q_r_9,  
+    output      reg signed      [W-1:0]      q_r_10,  
+    output      reg signed      [W-1:0]      q_r_11,  
+    output      reg signed      [W-1:0]      q_r_12,  
+    output      reg signed      [W-1:0]      q_r_13,  
+    output      reg signed      [W-1:0]      q_r_14,  
+    output      reg signed      [W-1:0]      q_r_15,  
+    output      reg signed      [W-1:0]      q_r_16,  
+    output      reg signed      [W-1:0]      q_r_17,  
+    output      reg signed      [W-1:0]      q_r_18,  
+    output      reg signed      [W-1:0]      q_r_19,  
+    output      reg signed      [W-1:0]      q_r_20,  
+    output      reg signed      [W-1:0]      q_r_21,  
+    output      reg signed      [W-1:0]      q_r_22,  
+    output      reg signed      [W-1:0]      q_r_23,  
+    output      reg signed      [W-1:0]      q_r_24,  
+    output      reg signed      [W-1:0]      q_r_25,  
+    output      reg signed      [W-1:0]      q_r_26,  
+    output      reg signed      [W-1:0]      q_r_27,  
+    output      reg signed      [W-1:0]      q_r_28,  
+    output      reg signed      [W-1:0]      q_r_29,  
+    output      reg signed      [W-1:0]      q_r_30,  
+    output      reg signed      [W-1:0]      q_r_31  
     
 
 	);
@@ -84,73 +84,73 @@ module pipe_r(
     
     always @(posedge clk or negedge arstb) begin
         if(!arstb) begin
-              q_r_0   <=  9'b0;     
-              q_r_1   <=  9'b0; 
-              q_r_2   <=  9'b0; 
-              q_r_3   <=  9'b0; 
-              q_r_4   <=  9'b0; 
-              q_r_5   <=  9'b0; 
-              q_r_6   <=  9'b0; 
-              q_r_7   <=  9'b0; 
-              q_r_8   <=  9'b0; 
-              q_r_9   <=  9'b0; 
-              q_r_10  <=  9'b0;  
-              q_r_11  <=  9'b0;  
-              q_r_12  <=  9'b0;  
-              q_r_13  <=  9'b0;  
-              q_r_14  <=  9'b0;  
-              q_r_15  <=  9'b0;  
-              q_r_16  <=  9'b0;  
-              q_r_17  <=  9'b0;  
-              q_r_18  <=  9'b0;  
-              q_r_19  <=  9'b0;  
-              q_r_20  <=  9'b0;  
-              q_r_21  <=  9'b0;  
-              q_r_22  <=  9'b0;  
-              q_r_23  <=  9'b0;  
-              q_r_24  <=  9'b0;  
-              q_r_25  <=  9'b0;  
-              q_r_26  <=  9'b0;  
-              q_r_27  <=  9'b0;  
-              q_r_28  <=  9'b0;  
-              q_r_29  <=  9'b0;  
-              q_r_30  <=  9'b0;  
-              q_r_31  <=  9'b0;  
+              q_r_0   <=  {W{1'b0}};     
+              q_r_1   <=  {W{1'b0}}; 
+              q_r_2   <=  {W{1'b0}}; 
+              q_r_3   <=  {W{1'b0}}; 
+              q_r_4   <=  {W{1'b0}}; 
+              q_r_5   <=  {W{1'b0}}; 
+              q_r_6   <=  {W{1'b0}}; 
+              q_r_7   <=  {W{1'b0}}; 
+              q_r_8   <=  {W{1'b0}}; 
+              q_r_9   <=  {W{1'b0}}; 
+              q_r_10  <=  {W{1'b0}};  
+              q_r_11  <=  {W{1'b0}};  
+              q_r_12  <=  {W{1'b0}};  
+              q_r_13  <=  {W{1'b0}};  
+              q_r_14  <=  {W{1'b0}};  
+              q_r_15  <=  {W{1'b0}};  
+              q_r_16  <=  {W{1'b0}};  
+              q_r_17  <=  {W{1'b0}};  
+              q_r_18  <=  {W{1'b0}};  
+              q_r_19  <=  {W{1'b0}};  
+              q_r_20  <=  {W{1'b0}};  
+              q_r_21  <=  {W{1'b0}};  
+              q_r_22  <=  {W{1'b0}};  
+              q_r_23  <=  {W{1'b0}};  
+              q_r_24  <=  {W{1'b0}};  
+              q_r_25  <=  {W{1'b0}};  
+              q_r_26  <=  {W{1'b0}};  
+              q_r_27  <=  {W{1'b0}};  
+              q_r_28  <=  {W{1'b0}};  
+              q_r_29  <=  {W{1'b0}};  
+              q_r_30  <=  {W{1'b0}};  
+              q_r_31  <=  {W{1'b0}};  
 
             end 
             else if (!rstb) begin
-              q_r_0   <=  9'b0;     
-              q_r_1   <=  9'b0; 
-              q_r_2   <=  9'b0; 
-              q_r_3   <=  9'b0; 
-              q_r_4   <=  9'b0; 
-              q_r_5   <=  9'b0; 
-              q_r_6   <=  9'b0; 
-              q_r_7   <=  9'b0; 
-              q_r_8   <=  9'b0; 
-              q_r_9   <=  9'b0; 
-              q_r_10  <=  9'b0;  
-              q_r_11  <=  9'b0;  
-              q_r_12  <=  9'b0;  
-              q_r_13  <=  9'b0;  
-              q_r_14  <=  9'b0;  
-              q_r_15  <=  9'b0;  
-              q_r_16  <=  9'b0;  
-              q_r_17  <=  9'b0;  
-              q_r_18  <=  9'b0;  
-              q_r_19  <=  9'b0;  
-              q_r_20  <=  9'b0;  
-              q_r_21  <=  9'b0;  
-              q_r_22  <=  9'b0;  
-              q_r_23  <=  9'b0;  
-              q_r_24  <=  9'b0;  
-              q_r_25  <=  9'b0;  
-              q_r_26  <=  9'b0;  
-              q_r_27  <=  9'b0;  
-              q_r_28  <=  9'b0;  
-              q_r_29  <=  9'b0;  
-              q_r_30  <=  9'b0;  
-              q_r_31  <=  9'b0;  
+              q_r_0   <=  {W{1'b0}};     
+              q_r_1   <=  {W{1'b0}}; 
+              q_r_2   <=  {W{1'b0}}; 
+              q_r_3   <=  {W{1'b0}}; 
+              q_r_4   <=  {W{1'b0}}; 
+              q_r_5   <=  {W{1'b0}}; 
+              q_r_6   <=  {W{1'b0}}; 
+              q_r_7   <=  {W{1'b0}}; 
+              q_r_8   <=  {W{1'b0}}; 
+              q_r_9   <=  {W{1'b0}}; 
+              q_r_10  <=  {W{1'b0}};  
+              q_r_11  <=  {W{1'b0}};  
+              q_r_12  <=  {W{1'b0}};  
+              q_r_13  <=  {W{1'b0}};  
+              q_r_14  <=  {W{1'b0}};  
+              q_r_15  <=  {W{1'b0}};  
+              q_r_16  <=  {W{1'b0}};  
+              q_r_17  <=  {W{1'b0}};  
+              q_r_18  <=  {W{1'b0}};  
+              q_r_19  <=  {W{1'b0}};  
+              q_r_20  <=  {W{1'b0}};  
+              q_r_21  <=  {W{1'b0}};  
+              q_r_22  <=  {W{1'b0}};  
+              q_r_23  <=  {W{1'b0}};  
+              q_r_24  <=  {W{1'b0}};  
+              q_r_25  <=  {W{1'b0}};  
+              q_r_26  <=  {W{1'b0}};  
+              q_r_27  <=  {W{1'b0}};  
+              q_r_28  <=  {W{1'b0}};  
+              q_r_29  <=  {W{1'b0}};  
+              q_r_30  <=  {W{1'b0}};  
+              q_r_31  <=  {W{1'b0}};  
             end 
             else begin
               q_r_0   <=  d_r_0 ;     

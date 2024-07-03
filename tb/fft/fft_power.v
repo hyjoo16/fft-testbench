@@ -1,117 +1,117 @@
 
 `timescale 1ns/1fs
 
-module fft_power(
+module fft_power #(parameter W = 4)(
     
     input                               clk,
     input                               arstb,
     
-    input      signed      [15:0]      fft_out_r_0,  
-    input      signed      [15:0]      fft_out_r_1,  
-    input      signed      [15:0]      fft_out_r_2,  
-    input      signed      [15:0]      fft_out_r_3,  
-    input      signed      [15:0]      fft_out_r_4,  
-    input      signed      [15:0]      fft_out_r_5,  
-    input      signed      [15:0]      fft_out_r_6,  
-    input      signed      [15:0]      fft_out_r_7,  
-    input      signed      [15:0]      fft_out_r_8,  
-    input      signed      [15:0]      fft_out_r_9,  
-    input      signed      [15:0]      fft_out_r_10,  
-    input      signed      [15:0]      fft_out_r_11,  
-    input      signed      [15:0]      fft_out_r_12,  
-    input      signed      [15:0]      fft_out_r_13,  
-    input      signed      [15:0]      fft_out_r_14,  
-    input      signed      [15:0]      fft_out_r_15,  
-    input      signed      [15:0]      fft_out_r_16,  
-    input      signed      [15:0]      fft_out_r_17,  
-    input      signed      [15:0]      fft_out_r_18,  
-    input      signed      [15:0]      fft_out_r_19,  
-    input      signed      [15:0]      fft_out_r_20,  
-    input      signed      [15:0]      fft_out_r_21,  
-    input      signed      [15:0]      fft_out_r_22,  
-    input      signed      [15:0]      fft_out_r_23,  
-    input      signed      [15:0]      fft_out_r_24,  
-    input      signed      [15:0]      fft_out_r_25,  
-    input      signed      [15:0]      fft_out_r_26,  
-    input      signed      [15:0]      fft_out_r_27,  
-    input      signed      [15:0]      fft_out_r_28,  
-    input      signed      [15:0]      fft_out_r_29,  
-    input      signed      [15:0]      fft_out_r_30,  
-    input      signed      [15:0]      fft_out_r_31,  
+    input      signed      [W-1:0]      fft_out_r_0,  
+    input      signed      [W-1:0]      fft_out_r_1,  
+    input      signed      [W-1:0]      fft_out_r_2,  
+    input      signed      [W-1:0]      fft_out_r_3,  
+    input      signed      [W-1:0]      fft_out_r_4,  
+    input      signed      [W-1:0]      fft_out_r_5,  
+    input      signed      [W-1:0]      fft_out_r_6,  
+    input      signed      [W-1:0]      fft_out_r_7,  
+    input      signed      [W-1:0]      fft_out_r_8,  
+    input      signed      [W-1:0]      fft_out_r_9,  
+    input      signed      [W-1:0]      fft_out_r_10,  
+    input      signed      [W-1:0]      fft_out_r_11,  
+    input      signed      [W-1:0]      fft_out_r_12,  
+    input      signed      [W-1:0]      fft_out_r_13,  
+    input      signed      [W-1:0]      fft_out_r_14,  
+    input      signed      [W-1:0]      fft_out_r_15,  
+    input      signed      [W-1:0]      fft_out_r_16,  
+    input      signed      [W-1:0]      fft_out_r_17,  
+    input      signed      [W-1:0]      fft_out_r_18,  
+    input      signed      [W-1:0]      fft_out_r_19,  
+    input      signed      [W-1:0]      fft_out_r_20,  
+    input      signed      [W-1:0]      fft_out_r_21,  
+    input      signed      [W-1:0]      fft_out_r_22,  
+    input      signed      [W-1:0]      fft_out_r_23,  
+    input      signed      [W-1:0]      fft_out_r_24,  
+    input      signed      [W-1:0]      fft_out_r_25,  
+    input      signed      [W-1:0]      fft_out_r_26,  
+    input      signed      [W-1:0]      fft_out_r_27,  
+    input      signed      [W-1:0]      fft_out_r_28,  
+    input      signed      [W-1:0]      fft_out_r_29,  
+    input      signed      [W-1:0]      fft_out_r_30,  
+    input      signed      [W-1:0]      fft_out_r_31,  
     
-    input      signed      [15:0]      fft_out_i_0,  
-    input      signed      [15:0]      fft_out_i_1,  
-    input      signed      [15:0]      fft_out_i_2,  
-    input      signed      [15:0]      fft_out_i_3,  
-    input      signed      [15:0]      fft_out_i_4,  
-    input      signed      [15:0]      fft_out_i_5,  
-    input      signed      [15:0]      fft_out_i_6,  
-    input      signed      [15:0]      fft_out_i_7,  
-    input      signed      [15:0]      fft_out_i_8,  
-    input      signed      [15:0]      fft_out_i_9,  
-    input      signed      [15:0]      fft_out_i_10,  
-    input      signed      [15:0]      fft_out_i_11,  
-    input      signed      [15:0]      fft_out_i_12,  
-    input      signed      [15:0]      fft_out_i_13,  
-    input      signed      [15:0]      fft_out_i_14,  
-    input      signed      [15:0]      fft_out_i_15,  
-    input      signed      [15:0]      fft_out_i_16,  
-    input      signed      [15:0]      fft_out_i_17,  
-    input      signed      [15:0]      fft_out_i_18,  
-    input      signed      [15:0]      fft_out_i_19,  
-    input      signed      [15:0]      fft_out_i_20,  
-    input      signed      [15:0]      fft_out_i_21,  
-    input      signed      [15:0]      fft_out_i_22,  
-    input      signed      [15:0]      fft_out_i_23,  
-    input      signed      [15:0]      fft_out_i_24,  
-    input      signed      [15:0]      fft_out_i_25,  
-    input      signed      [15:0]      fft_out_i_26,  
-    input      signed      [15:0]      fft_out_i_27,  
-    input      signed      [15:0]      fft_out_i_28,  
-    input      signed      [15:0]      fft_out_i_29,  
-    input      signed      [15:0]      fft_out_i_30,  
-    input      signed      [15:0]      fft_out_i_31,  
+    input      signed      [W-1:0]      fft_out_i_0,  
+    input      signed      [W-1:0]      fft_out_i_1,  
+    input      signed      [W-1:0]      fft_out_i_2,  
+    input      signed      [W-1:0]      fft_out_i_3,  
+    input      signed      [W-1:0]      fft_out_i_4,  
+    input      signed      [W-1:0]      fft_out_i_5,  
+    input      signed      [W-1:0]      fft_out_i_6,  
+    input      signed      [W-1:0]      fft_out_i_7,  
+    input      signed      [W-1:0]      fft_out_i_8,  
+    input      signed      [W-1:0]      fft_out_i_9,  
+    input      signed      [W-1:0]      fft_out_i_10,  
+    input      signed      [W-1:0]      fft_out_i_11,  
+    input      signed      [W-1:0]      fft_out_i_12,  
+    input      signed      [W-1:0]      fft_out_i_13,  
+    input      signed      [W-1:0]      fft_out_i_14,  
+    input      signed      [W-1:0]      fft_out_i_15,  
+    input      signed      [W-1:0]      fft_out_i_16,  
+    input      signed      [W-1:0]      fft_out_i_17,  
+    input      signed      [W-1:0]      fft_out_i_18,  
+    input      signed      [W-1:0]      fft_out_i_19,  
+    input      signed      [W-1:0]      fft_out_i_20,  
+    input      signed      [W-1:0]      fft_out_i_21,  
+    input      signed      [W-1:0]      fft_out_i_22,  
+    input      signed      [W-1:0]      fft_out_i_23,  
+    input      signed      [W-1:0]      fft_out_i_24,  
+    input      signed      [W-1:0]      fft_out_i_25,  
+    input      signed      [W-1:0]      fft_out_i_26,  
+    input      signed      [W-1:0]      fft_out_i_27,  
+    input      signed      [W-1:0]      fft_out_i_28,  
+    input      signed      [W-1:0]      fft_out_i_29,  
+    input      signed      [W-1:0]      fft_out_i_30,  
+    input      signed      [W-1:0]      fft_out_i_31,  
         
-    output         reg    signed     [34:0]      pwr_0,  
-    output         reg    signed     [34:0]      pwr_1,  
-    output         reg    signed     [34:0]      pwr_2,  
-    output         reg    signed     [34:0]      pwr_3,  
-    output         reg    signed     [34:0]      pwr_4,  
-    output         reg    signed     [34:0]      pwr_5,  
-    output         reg    signed     [34:0]      pwr_6,  
-    output         reg    signed     [34:0]      pwr_7,  
-    output         reg    signed     [34:0]      pwr_8,  
-    output         reg    signed     [34:0]      pwr_9,  
-    output         reg    signed     [34:0]      pwr_10,  
-    output         reg    signed     [34:0]      pwr_11,  
-    output         reg    signed     [34:0]      pwr_12,  
-    output         reg    signed     [34:0]      pwr_13,  
-    output         reg    signed     [34:0]      pwr_14,  
-    output         reg    signed     [34:0]      pwr_15, 
-    output         reg    signed     [34:0]      pwr_16 
+    output         reg    signed     [2*W+2:0]      pwr_0,  
+    output         reg    signed     [2*W+2:0]      pwr_1,  
+    output         reg    signed     [2*W+2:0]      pwr_2,  
+    output         reg    signed     [2*W+2:0]      pwr_3,  
+    output         reg    signed     [2*W+2:0]      pwr_4,  
+    output         reg    signed     [2*W+2:0]      pwr_5,  
+    output         reg    signed     [2*W+2:0]      pwr_6,  
+    output         reg    signed     [2*W+2:0]      pwr_7,  
+    output         reg    signed     [2*W+2:0]      pwr_8,  
+    output         reg    signed     [2*W+2:0]      pwr_9,  
+    output         reg    signed     [2*W+2:0]      pwr_10,  
+    output         reg    signed     [2*W+2:0]      pwr_11,  
+    output         reg    signed     [2*W+2:0]      pwr_12,  
+    output         reg    signed     [2*W+2:0]      pwr_13,  
+    output         reg    signed     [2*W+2:0]      pwr_14,  
+    output         reg    signed     [2*W+2:0]      pwr_15, 
+    output         reg    signed     [2*W+2:0]      pwr_16 
     
 
 
             );
 
 
-     wire   signed                   [34:0]      p_0;
-     wire   signed                   [34:0]      p_1;
-     wire   signed                   [34:0]      p_2;
-     wire   signed                   [34:0]      p_3;
-     wire   signed                   [34:0]      p_4;
-     wire   signed                   [34:0]      p_5;
-     wire   signed                   [34:0]      p_6;
-     wire   signed                   [34:0]      p_7;
-     wire   signed                   [34:0]      p_8;
-     wire   signed                   [34:0]      p_9;
-     wire   signed                   [34:0]      p_10;
-     wire   signed                   [34:0]      p_11;
-     wire   signed                   [34:0]      p_12;
-     wire   signed                   [34:0]      p_13;
-     wire   signed                   [34:0]      p_14;
-     wire   signed                   [34:0]      p_15;
-     wire   signed                   [34:0]      p_16;
+     wire   signed                   [2*W+2:0]      p_0;
+     wire   signed                   [2*W+2:0]      p_1;
+     wire   signed                   [2*W+2:0]      p_2;
+     wire   signed                   [2*W+2:0]      p_3;
+     wire   signed                   [2*W+2:0]      p_4;
+     wire   signed                   [2*W+2:0]      p_5;
+     wire   signed                   [2*W+2:0]      p_6;
+     wire   signed                   [2*W+2:0]      p_7;
+     wire   signed                   [2*W+2:0]      p_8;
+     wire   signed                   [2*W+2:0]      p_9;
+     wire   signed                   [2*W+2:0]      p_10;
+     wire   signed                   [2*W+2:0]      p_11;
+     wire   signed                   [2*W+2:0]      p_12;
+     wire   signed                   [2*W+2:0]      p_13;
+     wire   signed                   [2*W+2:0]      p_14;
+     wire   signed                   [2*W+2:0]      p_15;
+     wire   signed                   [2*W+2:0]      p_16;
 
 
 
@@ -149,42 +149,42 @@ module fft_power(
 
     always @(posedge clk or negedge arstb) begin
         if(!arstb) begin
-            pwr_0 <= 35'b0;
-            pwr_1 <= 35'b0;
-            pwr_2 <= 35'b0;
-            pwr_3 <= 35'b0;
-            pwr_4 <= 35'b0;
-            pwr_5 <= 35'b0;
-            pwr_6 <= 35'b0;
-            pwr_7 <= 35'b0;
-            pwr_8 <= 35'b0;
-            pwr_9 <= 35'b0;
-            pwr_10 <= 35'b0;
-            pwr_11 <= 35'b0;
-            pwr_12 <= 35'b0;
-            pwr_13 <= 35'b0;
-            pwr_14 <= 35'b0;
-            pwr_15 <= 35'b0;
-            pwr_16 <= 35'b0;
+            pwr_0 <= {(2*W+2){1'b0}};
+            pwr_1 <= {(2*W+2){1'b0}};
+            pwr_2 <= {(2*W+2){1'b0}};
+            pwr_3 <= {(2*W+2){1'b0}};
+            pwr_4 <= {(2*W+2){1'b0}};
+            pwr_5 <= {(2*W+2){1'b0}};
+            pwr_6 <= {(2*W+2){1'b0}};
+            pwr_7 <= {(2*W+2){1'b0}};
+            pwr_8 <= {(2*W+2){1'b0}};
+            pwr_9 <= {(2*W+2){1'b0}};
+            pwr_10 <= {(2*W+2){1'b0}};
+            pwr_11 <= {(2*W+2){1'b0}};
+            pwr_12 <= {(2*W+2){1'b0}};
+            pwr_13 <= {(2*W+2){1'b0}};
+            pwr_14 <= {(2*W+2){1'b0}};
+            pwr_15 <= {(2*W+2){1'b0}};
+            pwr_16 <= {(2*W+2){1'b0}};
         end
         else if(!rstb) begin
-            pwr_0 <= 35'b0;
-            pwr_1 <= 35'b0;
-            pwr_2 <= 35'b0;
-            pwr_3 <= 35'b0;
-            pwr_4 <= 35'b0;
-            pwr_5 <= 35'b0;
-            pwr_6 <= 35'b0;
-            pwr_7 <= 35'b0;
-            pwr_8 <= 35'b0;
-            pwr_9 <= 35'b0;
-            pwr_10 <= 35'b0;
-            pwr_11 <= 35'b0;
-            pwr_12 <= 35'b0;
-            pwr_13 <= 35'b0;
-            pwr_14 <= 35'b0;
-            pwr_15 <= 35'b0;
-            pwr_16 <= 35'b0;
+            pwr_0 <= {(2*W+2){1'b0}};
+            pwr_1 <= {(2*W+2){1'b0}};
+            pwr_2 <= {(2*W+2){1'b0}};
+            pwr_3 <= {(2*W+2){1'b0}};
+            pwr_4 <= {(2*W+2){1'b0}};
+            pwr_5 <= {(2*W+2){1'b0}};
+            pwr_6 <= {(2*W+2){1'b0}};
+            pwr_7 <= {(2*W+2){1'b0}};
+            pwr_8 <= {(2*W+2){1'b0}};
+            pwr_9 <= {(2*W+2){1'b0}};
+            pwr_10 <= {(2*W+2){1'b0}};
+            pwr_11 <= {(2*W+2){1'b0}};
+            pwr_12 <= {(2*W+2){1'b0}};
+            pwr_13 <= {(2*W+2){1'b0}};
+            pwr_14 <= {(2*W+2){1'b0}};
+            pwr_15 <= {(2*W+2){1'b0}};
+            pwr_16 <= {(2*W+2){1'b0}};
         end
         else begin
             pwr_0  <= p_0 ;

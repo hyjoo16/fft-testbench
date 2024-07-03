@@ -8,7 +8,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module fft_tb_top(
+module fft_tb_top (
     input       wire        arstb,
     input       wire        rst_retime,
     input       wire        freeze,
@@ -290,8 +290,6 @@ module fft_tb_top(
                                           
                                           .i2c_en_tw(1'b0),
                                           
-                                          .trun(20'b0000_0000_0000_000_0100),
-                                          .trun_mu_16(27'b0000_0000_0000_1000_00000),
                                     
                                           .i2c_w0_r(10'b0)   ,
                                           .i2c_w1_r(10'b0)   ,

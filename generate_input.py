@@ -121,7 +121,13 @@ def sine_example():
     phase_shift2 = 0  
     _, sinusoidal_signal2 = fft.generate_sinusoidal(frequency2, amplitude2, phase_shift2, time_interval)
 
-    combined_signal = sinusoidal_signal + sinusoidal_signal2
+    frequency3 = 3  
+    amplitude3 = 96  
+    phase_shift3 = 0  
+    _, sinusoidal_signal3 = fft.generate_sinusoidal(frequency3, amplitude3, phase_shift3, time_interval)
+
+
+    combined_signal = sinusoidal_signal + sinusoidal_signal2 + sinusoidal_signal3
     
     # sample the signal
     sampled_t_values, sampled_signal = fft.sample_signal(combined_signal, t_values, sampling_rate)
