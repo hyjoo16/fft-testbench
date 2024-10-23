@@ -1,4 +1,4 @@
-python generate_input.py --option sine  # change --option to custom for custom input functions
+python generate_input.py --option custom  # change --option to custom for custom input functions
 
 cp fft_input.txt ./tb/fft_tb/fft_input.txt
 cd ./tb/fft_tb

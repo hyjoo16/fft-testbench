@@ -23,4 +23,16 @@ module multiplier_tw #(parameter IN_W = 8, OUT_W = 8, TW_W = 10)(
     assign out_r = ({y_r[IN_W+TW_W], y_r[IN_W+TW_W-3:IN_W+TW_W-OUT_W-2]});
     assign out_i = ({y_i[IN_W+TW_W], y_i[IN_W+TW_W-3:IN_W+TW_W-OUT_W-2]});
 
+    // add rounding function 
+
+    // this assumes that twiddle factor has 2 bit of integer part && |tw|<1
+    // wire    signed [IN_W+TW_W-2:0]   trun_r;
+    // wire    signed [IN_W+TW_W-2:0]   trun_i;
+
+    // assign  trun_r = {y_r[IN_W+TW_W], y_r[IN_W+TW_W-3:0]};
+    // assign  trun_i = {y_i[IN_W+TW_W], y_i[IN_W+TW_W-3:0]};
+
+    // rounding_unit #(IN_W+TW_W-1, OUT_W) round_r (.in(trun_r), .out(out_r));
+    // rounding_unit #(IN_W+TW_W-1, OUT_W) round_i (.in(trun_i), .out(out_i));
+
 endmodule

@@ -8,7 +8,9 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module fft_tb_top (
+module fft_tb_top #(parameter FFT_IN = 8, FFT_OUT = 13, PWR = 2*FFT_OUT+3, 
+                    TW = 10,
+                    FFT_16 = 9, FFT_8 = 10, FFT_4 = 11, FFT_2 = 12)(
     input       wire        arstb,
     input       wire        rst_retime,
     input       wire        freeze,
@@ -66,23 +68,23 @@ module fft_tb_top (
     output                  [3:0]      pwr_dec_15,  
     output                  [3:0]      pwr_dec_16,  
 
-    output                  [34:0]      pwr_0,
-    output                  [34:0]      pwr_1,
-    output                  [34:0]      pwr_2,
-    output                  [34:0]      pwr_3,
-    output                  [34:0]      pwr_4,
-    output                  [34:0]      pwr_5,
-    output                  [34:0]      pwr_6,
-    output                  [34:0]      pwr_7,
-    output                  [34:0]      pwr_8,
-    output                  [34:0]      pwr_9,
-    output                  [34:0]      pwr_10,
-    output                  [34:0]      pwr_11,
-    output                  [34:0]      pwr_12,
-    output                  [34:0]      pwr_13,
-    output                  [34:0]      pwr_14,
-    output                  [34:0]      pwr_15,
-    output                  [34:0]      pwr_16
+    output                  [PWR-1:0]      pwr_0,
+    output                  [PWR-1:0]      pwr_1,
+    output                  [PWR-1:0]      pwr_2,
+    output                  [PWR-1:0]      pwr_3,
+    output                  [PWR-1:0]      pwr_4,
+    output                  [PWR-1:0]      pwr_5,
+    output                  [PWR-1:0]      pwr_6,
+    output                  [PWR-1:0]      pwr_7,
+    output                  [PWR-1:0]      pwr_8,
+    output                  [PWR-1:0]      pwr_9,
+    output                  [PWR-1:0]      pwr_10,
+    output                  [PWR-1:0]      pwr_11,
+    output                  [PWR-1:0]      pwr_12,
+    output                  [PWR-1:0]      pwr_13,
+    output                  [PWR-1:0]      pwr_14,
+    output                  [PWR-1:0]      pwr_15,
+    output                  [PWR-1:0]      pwr_16
     
 );
     
@@ -108,72 +110,72 @@ module fft_tb_top (
     reg [7:0]   x0_r_fft,x1_r_fft,x2_r_fft,x3_r_fft,x4_r_fft,x5_r_fft,x6_r_fft,x7_r_fft,x8_r_fft,x9_r_fft,x10_r_fft,x11_r_fft,x12_r_fft,x13_r_fft,x14_r_fft,x15_r_fft,x16_r_fft,x17_r_fft,x18_r_fft,x19_r_fft,x20_r_fft,x21_r_fft,x22_r_fft,x23_r_fft,x24_r_fft,x25_r_fft,x26_r_fft,x27_r_fft,x28_r_fft,x29_r_fft,x30_r_fft,x31_r_fft;
 
 
-    wire      signed      [15:0]      fft_out_r_0;  
-    wire      signed      [15:0]      fft_out_r_1;  
-    wire      signed      [15:0]      fft_out_r_2;  
-    wire      signed      [15:0]      fft_out_r_3;  
-    wire      signed      [15:0]      fft_out_r_4;  
-    wire      signed      [15:0]      fft_out_r_5;  
-    wire      signed      [15:0]      fft_out_r_6;  
-    wire      signed      [15:0]      fft_out_r_7;  
-    wire      signed      [15:0]      fft_out_r_8;  
-    wire      signed      [15:0]      fft_out_r_9;  
-    wire      signed      [15:0]      fft_out_r_10;  
-    wire      signed      [15:0]      fft_out_r_11;  
-    wire      signed      [15:0]      fft_out_r_12;  
-    wire      signed      [15:0]      fft_out_r_13;  
-    wire      signed      [15:0]      fft_out_r_14;  
-    wire      signed      [15:0]      fft_out_r_15;  
-    wire      signed      [15:0]      fft_out_r_16;  
-    wire      signed      [15:0]      fft_out_r_17;  
-    wire      signed      [15:0]      fft_out_r_18;  
-    wire      signed      [15:0]      fft_out_r_19;  
-    wire      signed      [15:0]      fft_out_r_20;  
-    wire      signed      [15:0]      fft_out_r_21;  
-    wire      signed      [15:0]      fft_out_r_22;  
-    wire      signed      [15:0]      fft_out_r_23;  
-    wire      signed      [15:0]      fft_out_r_24;  
-    wire      signed      [15:0]      fft_out_r_25;  
-    wire      signed      [15:0]      fft_out_r_26;  
-    wire      signed      [15:0]      fft_out_r_27;  
-    wire      signed      [15:0]      fft_out_r_28;  
-    wire      signed      [15:0]      fft_out_r_29;  
-    wire      signed      [15:0]      fft_out_r_30;  
-    wire      signed      [15:0]      fft_out_r_31;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_0;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_1;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_2;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_3;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_4;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_5;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_6;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_7;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_8;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_9;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_10;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_11;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_12;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_13;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_14;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_15;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_16;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_17;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_18;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_19;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_20;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_21;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_22;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_23;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_24;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_25;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_26;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_27;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_28;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_29;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_30;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_r_31;  
     
    
-    wire      signed      [15:0]      fft_out_i_0;  
-    wire      signed      [15:0]      fft_out_i_1;  
-    wire      signed      [15:0]      fft_out_i_2;  
-    wire      signed      [15:0]      fft_out_i_3;  
-    wire      signed      [15:0]      fft_out_i_4;  
-    wire      signed      [15:0]      fft_out_i_5;  
-    wire      signed      [15:0]      fft_out_i_6;  
-    wire      signed      [15:0]      fft_out_i_7;  
-    wire      signed      [15:0]      fft_out_i_8;  
-    wire      signed      [15:0]      fft_out_i_9;  
-    wire      signed      [15:0]      fft_out_i_10;  
-    wire      signed      [15:0]      fft_out_i_11;  
-    wire      signed      [15:0]      fft_out_i_12;  
-    wire      signed      [15:0]      fft_out_i_13;  
-    wire      signed      [15:0]      fft_out_i_14;  
-    wire      signed      [15:0]      fft_out_i_15;  
-    wire      signed      [15:0]      fft_out_i_16;  
-    wire      signed      [15:0]      fft_out_i_17;  
-    wire      signed      [15:0]      fft_out_i_18;  
-    wire      signed      [15:0]      fft_out_i_19;  
-    wire      signed      [15:0]      fft_out_i_20;  
-    wire      signed      [15:0]      fft_out_i_21;  
-    wire      signed      [15:0]      fft_out_i_22;  
-    wire      signed      [15:0]      fft_out_i_23;  
-    wire      signed      [15:0]      fft_out_i_24;  
-    wire      signed      [15:0]      fft_out_i_25;  
-    wire      signed      [15:0]      fft_out_i_26;  
-    wire      signed      [15:0]      fft_out_i_27;  
-    wire      signed      [15:0]      fft_out_i_28;  
-    wire      signed      [15:0]      fft_out_i_29;  
-    wire      signed      [15:0]      fft_out_i_30;  
-    wire      signed      [15:0]      fft_out_i_31;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_0;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_1;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_2;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_3;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_4;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_5;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_6;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_7;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_8;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_9;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_10;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_11;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_12;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_13;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_14;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_15;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_16;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_17;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_18;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_19;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_20;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_21;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_22;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_23;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_24;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_25;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_26;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_27;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_28;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_29;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_30;  
+    wire      signed      [FFT_OUT-1:0]      fft_out_i_31;  
 
     //fft//
     always @(posedge clk_fpga_in or negedge arstb) begin
@@ -283,7 +285,9 @@ module fft_tb_top (
     
 
 
-    fft_32  i_fft_32                      
+    fft_32  #(FFT_IN, FFT_OUT, 
+            FFT_16, FFT_8, FFT_4, FFT_2, TW)
+            i_fft_32                      
                                 (
                                           .clk(clk_fpga_in),                                 
                                           .arstb(arstb), 
@@ -425,14 +429,9 @@ module fft_tb_top (
                                            .fft_out_i_30(fft_out_i_30),  
                                            .fft_out_i_31(fft_out_i_31)  
                                     );
-   
-    // wire    signed  [34:0]  pwr_0, pwr_1, pwr_2, pwr_3, pwr_4, pwr_5, pwr_6, pwr_7, pwr_8, pwr_9, pwr_10, pwr_11, pwr_12, pwr_13, pwr_14, pwr_15, pwr_16;
 
 
-   
-
-
-        fft_power   i_fft_power     
+        fft_power   #(FFT_OUT)  i_fft_power     
                                     (   
                                             .clk(clk_fpga_in),
                                             .arstb(arstb),
@@ -525,47 +524,47 @@ module fft_tb_top (
 
 
 
-    new_power_dec_top       i_power_dec_top     (   
-                                                    .clk(clk_fpga_in) ,
-                                                    .arstb(arstb),
-                                                    .freeze(freeze),
+    // new_power_dec_top       i_power_dec_top     (   
+    //                                                 .clk(clk_fpga_in) ,
+    //                                                 .arstb(arstb),
+    //                                                 .freeze(freeze),
                                                                
-                                                    .pwr_0 (pwr_0 ),  
-                                                    .pwr_1 (pwr_1 ),  
-                                                    .pwr_2 (pwr_2 ),  
-                                                    .pwr_3 (pwr_3 ),  
-                                                    .pwr_4 (pwr_4 ),  
-                                                    .pwr_5 (pwr_5 ),  
-                                                    .pwr_6 (pwr_6 ),  
-                                                    .pwr_7 (pwr_7 ),  
-                                                    .pwr_8 (pwr_8 ),  
-                                                    .pwr_9 (pwr_9 ),  
-                                                    .pwr_10(pwr_10),  
-                                                    .pwr_11(pwr_11),  
-                                                    .pwr_12(pwr_12),  
-                                                    .pwr_13(pwr_13),  
-                                                    .pwr_14(pwr_14),  
-                                                    .pwr_15(pwr_15), 
-                                                    .pwr_16(pwr_16), 
+    //                                                 .pwr_0 (pwr_0 ),  
+    //                                                 .pwr_1 (pwr_1 ),  
+    //                                                 .pwr_2 (pwr_2 ),  
+    //                                                 .pwr_3 (pwr_3 ),  
+    //                                                 .pwr_4 (pwr_4 ),  
+    //                                                 .pwr_5 (pwr_5 ),  
+    //                                                 .pwr_6 (pwr_6 ),  
+    //                                                 .pwr_7 (pwr_7 ),  
+    //                                                 .pwr_8 (pwr_8 ),  
+    //                                                 .pwr_9 (pwr_9 ),  
+    //                                                 .pwr_10(pwr_10),  
+    //                                                 .pwr_11(pwr_11),  
+    //                                                 .pwr_12(pwr_12),  
+    //                                                 .pwr_13(pwr_13),  
+    //                                                 .pwr_14(pwr_14),  
+    //                                                 .pwr_15(pwr_15), 
+    //                                                 .pwr_16(pwr_16), 
                                                                
-                                                    .pwr_dec_0 (pwr_dec_0 ),
-                                                    .pwr_dec_1 (pwr_dec_1 ),
-                                                    .pwr_dec_2 (pwr_dec_2 ),
-                                                    .pwr_dec_3 (pwr_dec_3 ),
-                                                    .pwr_dec_4 (pwr_dec_4 ),
-                                                    .pwr_dec_5 (pwr_dec_5 ),
-                                                    .pwr_dec_6 (pwr_dec_6 ),
-                                                    .pwr_dec_7 (pwr_dec_7 ),
-                                                    .pwr_dec_8 (pwr_dec_8 ),
-                                                    .pwr_dec_9 (pwr_dec_9 ),
-                                                    .pwr_dec_10(pwr_dec_10),
-                                                    .pwr_dec_11(pwr_dec_11),
-                                                    .pwr_dec_12(pwr_dec_12),
-                                                    .pwr_dec_13(pwr_dec_13),
-                                                    .pwr_dec_14(pwr_dec_14),
-                                                    .pwr_dec_15(pwr_dec_15),
-                                                    .pwr_dec_16(pwr_dec_16)
-                                            );
+    //                                                 .pwr_dec_0 (pwr_dec_0 ),
+    //                                                 .pwr_dec_1 (pwr_dec_1 ),
+    //                                                 .pwr_dec_2 (pwr_dec_2 ),
+    //                                                 .pwr_dec_3 (pwr_dec_3 ),
+    //                                                 .pwr_dec_4 (pwr_dec_4 ),
+    //                                                 .pwr_dec_5 (pwr_dec_5 ),
+    //                                                 .pwr_dec_6 (pwr_dec_6 ),
+    //                                                 .pwr_dec_7 (pwr_dec_7 ),
+    //                                                 .pwr_dec_8 (pwr_dec_8 ),
+    //                                                 .pwr_dec_9 (pwr_dec_9 ),
+    //                                                 .pwr_dec_10(pwr_dec_10),
+    //                                                 .pwr_dec_11(pwr_dec_11),
+    //                                                 .pwr_dec_12(pwr_dec_12),
+    //                                                 .pwr_dec_13(pwr_dec_13),
+    //                                                 .pwr_dec_14(pwr_dec_14),
+    //                                                 .pwr_dec_15(pwr_dec_15),
+    //                                                 .pwr_dec_16(pwr_dec_16)
+    //                                         );
 
 
 

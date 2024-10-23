@@ -2,8 +2,9 @@
 
 `timescale 1ns/1fs
 
-module fft_32 #(parameter IN_W = 8, OUT_W = 4, TW_W = 10,
-                W_16 = 4, W_8 = 4, W_4 = 4, W_2 = 4)(
+module fft_32 #(parameter IN_W = 8, OUT_W = 8,
+                W_16 = 8, W_8 = 8, W_4 = 8, W_2 = 8,
+                TW_W = 10)(
     
     input                               clk,
     input                               arstb,
@@ -634,6 +635,7 @@ pipe_r  #(W_16)      i_pipe_r
                                             .q_r_31(fstb15_r_d)
                                             
                                              );
+
     wire    signed  [W_8-1:0]   sa0_r,  sa0_i;
     wire    signed  [W_8-1:0]   sa1_r,  sa1_i;
     wire    signed  [W_8-1:0]   sa2_r,  sa2_i;

@@ -42,6 +42,41 @@ def integers_to_5bit_binary_file(integer_values, filename):
                 binary_strings = [integer_to_5bit_binary(value) for value in line_values]
                 file.write(''.join(binary_strings) + '\n')
 
+### BRAM initalization file 
+def generate_coe_file(filename, data, radix=16, bit_width=8, iterations=5):
+    """
+    Generate a .coe file to initialize FPGA BRAM with hexadecimal values, repeating the data vector for a given number of iterations.
+
+    :param filename: Name of the output .coe file (string)
+    :param data: List of data values to initialize the BRAM (list of integers)
+    :param radix: The number system (default 16 for hexadecimal)
+    :param bit_width: Number of bits per value (default 8 bits, 2 hexadecimal digits)
+    :param iterations: Number of times to repeat the data vector
+    """
+    # Create the radix line
+    coe_content = "memory_initialization_radix={};\n".format(radix)
+    coe_content += "memory_initialization_vector=\n"
+
+    # Prepare the data to be repeated
+    if radix == 16:
+        # Hexadecimal formatting with leading zeros for each value (2 hexadecimal digits)
+        formatted_data = [format(val, '0{}X'.format(bit_width // 4)) for val in data]
+    else:
+        formatted_data = [str(val) for val in data]  # Other formats if needed
+
+    # Repeat the data vector for the specified number of iterations
+    repeated_data = formatted_data * iterations
+
+    # Join the repeated data, separating each value by a comma and adding a semicolon at the end
+    coe_content += ",\n".join(repeated_data) + ";\n"
+
+    # Write the coe_content to the .coe file
+    with open(filename, "w") as coe_file:
+        coe_file.write(coe_content)
+
+    print("COE file '{}' generated successfully with {} iterations.".format(filename, iterations))
+
+
 ### Formating FFT inputs 
 
 def integer_to_8bit_signed(sampled_values):
@@ -75,14 +110,14 @@ def integers_to_8bit_binary_file(integer_values, window_size, stride, filename):
 def dc_example():
     print("*** Generate example fft output with dc signal values ***")
 
-    amplitude = 64
+    amplitude = 127
     sampling_rate = 8  # GHz
     N = 32 
     time_interval = (0, N/sampling_rate)  # ns
 
     t_values, dc_signal = fft.generate_dc(amplitude, time_interval)
 
-    sampled_t_values, sampled_signal = fft.sample_signal(dc_signal, t_values, sampling_rate)
+    sampled_t_values, sampled_signal = fft.sample_signal_no_interp(dc_signal, t_values, sampling_rate)
 
     # generate refernce results & plot 
     frequencies, amplitudes = fft.perform_fft(sampled_signal, sampling_rate)
@@ -152,6 +187,36 @@ def sine_example():
 def custom_function():
     print("*** Generate example fft output with user generated signal values ***")
     # TODO: add your own generation code
+    frequency = 1 # GHz
+    amplitude = 127
+    sampling_rate = 8  # GHz
+    N = 32 
+    time_interval = (0, N/sampling_rate)  # ns
+    pulse_width = (1/frequency)*0.5
+
+    t_values, rec_signal = fft.generate_rectangular_pulse(amplitude, pulse_width, frequency, time_interval)
+    print(rec_signal)
+    sampled_t_values, sampled_signal = fft.sample_signal_no_interp(rec_signal, t_values, sampling_rate)
+
+    frequencies, amplitudes = fft.perform_fft(sampled_signal, sampling_rate)
+    sampled_q = integer_to_8bit_signed(sampled_signal)
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(6, 5))
+    fft.plot_time_domain(ax1, t_values, rec_signal, sampled_t_values, sampled_signal)
+    fft.plot_frequency_domain(ax2, frequencies, amplitudes)
+
+    plt.tight_layout()
+    plt.show()
+
+    # write fft input to file
+    integers_to_8bit_binary_file(sampled_q, 32, 16,'./fft_input.txt')
+
+    # write fft input to BRAM coe file
+    generate_coe_file('./fft_input.coe',sampled_q)
+
+    # write lvds input to file 
+    sampled_q = integer_to_5bit_unsigned(sampled_signal)
+    integers_to_5bit_binary_file(sampled_q, './lvds_input.txt')
+
 
 def main():
 

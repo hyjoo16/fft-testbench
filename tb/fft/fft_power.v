@@ -1,7 +1,7 @@
 
 `timescale 1ns/1fs
 
-module fft_power #(parameter W = 4)(
+module fft_power #(parameter W = 8)(
     
     input                               clk,
     input                               arstb,
@@ -115,7 +115,7 @@ module fft_power #(parameter W = 4)(
 
 
 
-    assign p_0 = (fft_out_r_0*fft_out_r_0) + (fft_out_i_0*fft_out_i_0);
+    assign p_0 = (fft_out_r_0*fft_out_r_0) + (fft_out_i_0*fft_out_i_0) + (fft_out_r_0*fft_out_r_0) + (fft_out_i_0*fft_out_i_0);
     assign p_1 = (fft_out_r_1*fft_out_r_1) + (fft_out_i_1*fft_out_i_1) + (fft_out_r_31*fft_out_r_31) + (fft_out_i_31*fft_out_i_31);
     assign p_2 = (fft_out_r_2*fft_out_r_2) + (fft_out_i_2*fft_out_i_2) + (fft_out_r_30*fft_out_r_30) + (fft_out_i_30*fft_out_i_30);
     assign p_3 = (fft_out_r_3*fft_out_r_3) + (fft_out_i_3*fft_out_i_3) + (fft_out_r_29*fft_out_r_29) + (fft_out_i_29*fft_out_i_29);
@@ -131,8 +131,8 @@ module fft_power #(parameter W = 4)(
     assign p_13 = (fft_out_r_13*fft_out_r_13) + (fft_out_i_13*fft_out_i_13) + (fft_out_r_19*fft_out_r_19) + (fft_out_i_19*fft_out_i_19);
     assign p_14 = (fft_out_r_14*fft_out_r_14) + (fft_out_i_14*fft_out_i_14) + (fft_out_r_18*fft_out_r_18) + (fft_out_i_18*fft_out_i_18);
     assign p_15 = (fft_out_r_15*fft_out_r_15) + (fft_out_i_15*fft_out_i_15) + (fft_out_r_17*fft_out_r_17) + (fft_out_i_17*fft_out_i_17);
-    // assign p_16 = (fft_out_r_16*fft_out_r_16) + (fft_out_i_16*fft_out_i_16) + (fft_out_r_16*fft_out_r_16) + (fft_out_i_16*fft_out_i_16);
-    assign p_16 = (fft_out_r_16*fft_out_r_16) + (fft_out_i_16*fft_out_i_16);
+    assign p_16 = (fft_out_r_16*fft_out_r_16) + (fft_out_i_16*fft_out_i_16) + (fft_out_r_16*fft_out_r_16) + (fft_out_i_16*fft_out_i_16);
+    // assign p_16 = (fft_out_r_16*fft_out_r_16) + (fft_out_i_16*fft_out_i_16);
 
 
 
